@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Overflow</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Playfair+Display:wght@400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <form action="/" method="post">
+        <div class="container">
+            <h1><i class="fas fa-chart-line"></i> Stock Overflow</h1>
+            <div class="row">
+                <div class="col-12">
+                    <label for="company">Ação:</label>
+                    <input id="company" type="text" name="company" autofocus required>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-6 datas">
+                            <label for="initialDate" class="labels">Data inicial:</label>
+                        </div>
+                        <div class="col-md-6 datas">
+                            <input type="date" name="initialDate" id="initialDate" value="<%=past %>" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 datas">
+                            <label for="finalDate" class="labels">Data final:</label>
+                        </div>
+                        <div class="col-md-6 datas">
+                            <input type="date" name="finalalDate" id="finalDate" value="<%=today %>"" required>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="col-lg-6 botao">
+                    <button type="submit" class="btn btn-lg"><i class="fas fa-chart-line"></i> Buscar!</button>
+                </div>
+            </div>
+    </form>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

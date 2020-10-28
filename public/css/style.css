@@ -1,0 +1,49 @@
+body {  
+    background-image: url("https://cdn.pixabay.com/photo/2017/09/07/08/53/money-2724235_960_720.jpg");
+    background-position:top;
+    background-size:  100%;    
+    color: #0f4c75;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+
+
+[type="date"] {
+    border-radius: 0.5rem;
+    color: #d3d4d8;
+    font-size: 1.5rem;
+}
+
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.botao {
+    text-align: center;
+}
+
+.btn {
+    background-color: #00b7c2;
+    color: #1b262c;
+    margin: auto auto;
+    position: relative;
+    top: 30%;
+}
+
+.container {
+    padding: 10% 10%;
+    max-width: 1100px;  
+}
+
+#company {
+    border-radius: 0.5rem;
+    color: #1b262c;
+    max-width: 90%;
+    text-align: center;
+}

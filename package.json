@@ -7,6 +7,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "lodash": "^4.17.20",
     "stock-info": "^1.2.0",
     "yahoo-finance": "^0.3.6"
   },

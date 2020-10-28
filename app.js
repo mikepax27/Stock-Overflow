@@ -2,52 +2,62 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const si = require("stock-info");
 const yahooFinance = require('yahoo-finance');
+
+//funções
+const date = require(__dirname + '/library/date.js');
+const trataStrings = require(__dirname + '/library/trataStrings.js');
+const statistcs = require(__dirname + '/library/statistics.js');
+
 const PORT = 3000;
+let carteira = [];
+let results = [];
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-const data = new Date;
 
 // si.getSingleStockInfo('AAPL').then(console.log);
 
-// yahooFinance.historical({
-//     symbol: 'AAPL',
-//     from: '2010-01-01',
-//     to: '2020-10-26',
-//     //fields: ['s', 'n', 'd1', 'l1', 'y', 'r'],
-//     period: 'v'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
-// }, function (err, quotes) {
-//     if (!err)
-//         console.log(quotes);
-// });
+
+function trataDados(){
+    console.log("teste");
+    console.log(statistcs.standardDeviation([2, 4, 6, 8]));
+
+}
+
+
+//Busca o histórico das ações e calcula o rendimento mensal
+function buscaHisRetorno(acoes){
+    acoes.forEach(element => {
+        yahooFinance.historical({
+            symbol: element,
+            from: date.getDate(5),
+            to: date.getDate(0),
+            period: 'm'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
+        }, (err, quotes) => {
+            if (!err){
+                const hist = [];
+                //calcula o rendimento mensal de cada ação 
+                for (let i = 0; i < quotes.length-1; i++)
+                    hist.push(quotes[i].close/quotes[i+1].close-1);
+                carteira.push({name: element, retornos: hist});
+            }
+            if (carteira.length ==acoes.length)
+                trataDados();
+        });
+    });
+}
 
 app.get('/', (req, res) => {
-    //define a data de hj e de 5 anos atrás, faltou tratar ano bissexto
-    let today = data.getFullYear()+"-";
-    let past  = (data.getFullYear()-5)+"-";
-    if (data.getMonth() < 9){
-        today +="0";
-        past +="0";
-    }
-    today += (data.getMonth()+1)+"-";
-    past += (data.getMonth()+1)+"-"; 
-    if (data.getDate() < 10){
-        today +="0";
-        past +="0";
-    }
-    today += data.getDate();
-    past += data.getDate(); 
-
-    console.log(today + "  " + past);
-
-    res.render('home', { today: today, past: past });
+    res.render('home');
 });
 
 app.post ("/", (req, res) => {
-    console.log(req.body)
 
+    const acoes = trataStrings.separate(req.body.company);
+    carteira = [];
+    buscaHisRetorno(acoes);
 });
 
 app.listen(PORT, () => {

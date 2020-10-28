@@ -1,8 +1,8 @@
 body {  
     background-image: url("https://cdn.pixabay.com/photo/2017/09/07/08/53/money-2724235_960_720.jpg");
     background-position:top;
-    background-size:  100%;    
-    color: #0f4c75;
+    background-size:  cover;    
+    color: #48466d;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 500;
     font-size: 2rem;
@@ -12,7 +12,7 @@ body {
 
 [type="date"] {
     border-radius: 0.5rem;
-    color: #d3d4d8;
+    color: #48466d;
     font-size: 1.5rem;
 }
 
@@ -29,11 +29,16 @@ h1 {
 }
 
 .btn {
-    background-color: #00b7c2;
-    color: #1b262c;
+    background-color: #46cdcf;
+    color: #48466d;
     margin: auto auto;
+    font-size: 2rem;;
     position: relative;
-    top: 30%;
+    top: 25%;
+}
+
+.btn:hover {
+    background-color: #46edcf;
 }
 
 .container {
@@ -43,7 +48,7 @@ h1 {
 
 #company {
     border-radius: 0.5rem;
-    color: #1b262c;
+    color: #48466d;
     max-width: 90%;
     text-align: center;
 }

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
         integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <!-- css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/results.css">
     <!-- Google font -->
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Playfair+Display:wght@400;600;800&display=swap"
@@ -21,7 +21,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/"><i class="fas fa-chart-line"></i> Stock Overflow</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,25 +30,62 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/sobre">Sobre</a>
                 </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0" action="/" method="post">
+                <input class="form-control mr-sm-2" type="search" name="company" placeholder="Nova busca" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-chart-line"></i> Buscar</button>
+            </form>
         </div>
     </nav>
 
-    <main class="container">
-        <form action="/" method="post">
-            <h1><i class="fas fa-chart-line"></i> Stock Overflow</h1>
-            <label for="company"></label>
-            <input id="company" type="text" name="company" autofocus required placeholder="Defina as ações desejadas">
-            <br>
-            <button type="submit" class="btn btn-lg buscar"><i class="fas fa-chart-line"></i> Buscar!</button>
-        </form>
+    <main>
+        <div class="individual">
+            <h2>Dados cada ativo</h2>
+            <table border="1">
+                <tr>
+                    <th>Nome</th>
+                    <th>Espectativa de Retorno(a.m)</th>
+                    <th>Risco</th>
+                </tr>
+                <%results[0].forEach(element => {%>
+                    <tr>
+                        <td><%=element.name%></td>
+                        <td><%=element.retorno%>%</td>
+                        <td><%=element.risco%>%</td>
+                    </tr>
+                <%});%>               
+            </table>
+        </div>
+
+        <div class="variadas">
+            <%for (let i = 1; i < results.length; i++) {%>
+                <h2>Dados para combinações de <%=(i+1)%> ativos</h2>
+                <%for (let k = 0; k < results[i].length; k++) {%>
+                    <table border="1">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Peso</th>
+                        </tr>
+                        <%for (let j = 0; j <= i; j++) {%>
+                            <tr>
+                                <td><%=results[i][k].name[j]%></td>
+                                <td><%=results[i][k].pesos[j]%>%</td>
+                            </tr>
+                        <%}%>
+                    </table>
+                    <p>Espectativa de Retorno(a.m): <%=results[i][k].retorno%>%</p>
+                    <p>Risco: <%=results[i][k].risco%>%</p>
+                <%}%>
+            <%}%>
+        </div>        
     </main>
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -4,15 +4,11 @@ body {
     background-size:  cover;    
     color: #48466d;
     font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 500;
-    font-size: 2rem;
+
+    text-align: center;
 }
 
-
-
-[type="date"] {
-    border-radius: 0.5rem;
-    color: #48466d;
+p{
     font-size: 1.5rem;
 }
 
@@ -24,31 +20,34 @@ h1 {
     text-align: center;
 }
 
-.botao {
-    text-align: center;
-}
-
-.btn {
+.buscar {
     background-color: #46cdcf;
+    border-radius: 1rem;
     color: #48466d;
-    margin: auto auto;
+    margin-top: 1rem;
     font-size: 2rem;;
     position: relative;
     top: 25%;
 }
 
-.btn:hover {
+.buscar:hover {
     background-color: #46edcf;
 }
 
-.container {
+main {
     padding: 10% 10%;
-    max-width: 1100px;  
+    max-width: 1100px;
+    font-size: 2rem;  
+    font-weight: 500;
 }
 
 #company {
-    border-radius: 0.5rem;
+    border-radius: 1.5rem;
     color: #48466d;
     max-width: 90%;
     text-align: center;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
 }

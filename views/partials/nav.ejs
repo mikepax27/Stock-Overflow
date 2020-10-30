@@ -1,0 +1,28 @@
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light <%=page %>">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-chart-line"></i> Stock Overflow</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item home1">
+                        <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item sobre1">
+                        <a class="nav-link" href="/sobre">Sobre</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/" method="post">
+                    <input class="form-control mr-sm-2" type="search" name="company" placeholder="Nova busca" aria-label="Search" required>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-chart-line"></i> Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>

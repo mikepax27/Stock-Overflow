@@ -1,0 +1,67 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f9f7f7;
+    color: #112d4e;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+}
+
+.navbar {
+    background-color:#dbe2ef;
+}
+
+.btn-outline-primary {
+    color: #112d4e;
+    border-color: #112d4e;
+}
+
+.btn-outline-primary:hover{
+    background-color: #112d4e;
+    color: #f9f7f7;
+    border-color: #f9f7f7;
+}
+
+p {
+    max-width: 500px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.par {
+    background-color: #dbe2ef;
+    color: #112d4e;
+}
+
+.impar {
+    background-color: #3f72af;
+    color: #f9f7f7;
+    
+}
+
+.secao {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card {
+    background-color: #f9f7f7;
+    color: #112d4e;
+    margin-top: 1rem;
+}
+
+.table {
+    color: #112d4e;
+    max-width: 600px;
+    margin: auto;
+}
+
+.individual{
+    text-align: center;
+}

@@ -2,7 +2,7 @@ body {
     background-image: url("https://cdn.pixabay.com/photo/2017/09/07/08/53/money-2724235_960_720.jpg");
     background-position:top;
     background-size:  cover;    
-    color: #48466d;
+    color: #112d4e;
     font-family: 'Noto Sans JP', sans-serif;
 
     text-align: center;
@@ -15,29 +15,29 @@ p{
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 600;
     text-align: center;
 }
 
 .buscar {
-    background-color: #46cdcf;
+    background-color: #112d4e;
     border-radius: 1rem;
-    color: #48466d;
+    color: #f9f7f7;
     margin-top: 1rem;
-    font-size: 2rem;;
+    font-size: 1.6rem;;
     position: relative;
     top: 25%;
 }
 
 .buscar:hover {
-    background-color: #46edcf;
+    background-color: #3f72af;
 }
 
 main {
     padding: 10% 10%;
     max-width: 1100px;
-    font-size: 2rem;  
+    font-size: 1.6rem;  
     font-weight: 500;
 }
 
@@ -50,4 +50,19 @@ main {
 
 .navbar-brand {
     font-family: 'Playfair Display', serif;
+}
+
+.errorMsg {
+    color: red;
+    font-size: 1.3rem;
+}
+
+@media (max-width: 800px) {
+    h1{
+        font-size: 3.5rem;
+    }
+
+    main, .buscar {
+        font-size: 1.3rem;
+    }
 }

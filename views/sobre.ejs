@@ -1,0 +1,36 @@
+<%- include("partials/header") -%>
+<!-- css -->
+<link rel="stylesheet" href="css/style2.css">
+<%- include("partials/nav") -%>
+
+<main class="container">
+    <div class="row secao">
+        <div class = "col-md-6">
+            <p>Esse site foi feito para um trabalho prático de Administração Financeira.</p>
+            <p>O tema aqui abordado está relacionado ao <em>Risco e Retorno em Mercados de Capital</em>.</p>
+            <p>Com base nos dados de cotações para as ações da bolsa americana obtidos do <a href="https://finance.yahoo.com/">Yahoo Finance</a> avalia-se a expectativa de retorno e risco associado para todos os subconjuntos de ações que compõem uma carteira.</p>
+            <p>Os calculos são feitos com base nos dados dos últimos 5 anos de cada ativo. A expectativa de retorno é dada pela média das rentabilidades mensais e o risco pelo seu desvio padrão. Para os cálculos que relacionam mais de um ativo, é feito calculo dos pesos antes.</p>
+            <p>Dessa forma, é possível encontrar a composição de menor risco para uma determinada carteira, o que enfatiza, portanto, o fato de que a diversificação deve reduzir ao máximo o risco não sistemático de uma carteira de investimentos.</p>
+        </div>
+        <div class = "col-md-6">
+            <h3>Instruções</h3>
+            <p>Para fazer uma pesquisa, basta inserir as siglas das ações desejadas para a sua carteira de ativos, limitadas a no máximo cinco.</p>
+            <p>As siglas podem usar letras maiúsculas ou minúsculas e devem ser separadas por espaços em branco, vírgula ou ponto e vírgula.</p>
+            <p><strong>Exemplos de boscas:</strong></p>
+            <ul>
+                <li>aapl goog</li>
+                <li>AMD, v; EbAy</li>
+                <li>msft bbd csco ITUB bac</li>
+            </ul>
+            <br>
+            <h3>Integrantes do grupo</h3>
+            <ul>
+                <li>Carol Drummond</li>
+                <li>Julia Veloso</li>
+                <li>Michael Páris</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<%- include("partials/footer") -%>

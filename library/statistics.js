@@ -16,13 +16,23 @@ exports.std = function (values) {
 
 //Covariancia amostral
 exports.cvr = function (valuesA, valuesB) {
-    let avgA = avgr(valuesA);
-    let avgB = avgr(valuesB);
+    
+    let tam;
+    //Determina o tamanho do menor vetor
+    if (valuesA.length > valuesB.length)
+        tam = valuesB.length;
+    else
+        tam = valuesA.length;
+
+    let avgA = avg3(valuesA, tam);
+    let avgB = avg3(valuesB, tam);
     let covar = 0;
-    for (let i = 0; i < valuesA.length; i++)
+    for (let i = 0; i < tam; i++)
         covar += (valuesA[i] - avgA) * (valuesB[i] - avgB);
-    return covar / (valuesA.length - 1);
+    return covar / (tam);
 }
+
+
 
 //media
 function avgr(data) {
@@ -42,6 +52,15 @@ function avg2(data) {
 
     var avg = sum / (data.length - 1);
     return avg;
+}
+
+//Calculo da media para ser usado no calculo da covariancia
+function avg3(data, tam) {
+    let avg = 0;
+    for (let i = 0; i < tam; i++) {
+        avg += data[i];
+    }
+    return avg / tam;
 }
 
 module.exports.avgr = avgr;

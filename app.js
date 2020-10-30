@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const si = require("stock-info");
 const yahooFinance = require('yahoo-finance');
 const mathjs = require("mathjs");
 
@@ -12,13 +11,12 @@ const statistcs = require(__dirname + '/library/statistics.js');
 const PORT = 3000;
 let carteira = [];
 let results = [];
+let msgErro = "";
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-
-// si.getSingleStockInfo('AAPL').then(console.log);
 
 //Gera todos os subconjuntos de um vetor
 const getAllSubsets =
@@ -36,7 +34,6 @@ function trataDados(res) {
     carteira.forEach(acao => {
         results[0].push({ name: acao.name, retorno: (statistcs.avgr(acao.retornos)*100).toFixed(2), risco: (statistcs.std(acao.retornos)*100).toFixed(2) });
     });
-    //console.log(results[0]);
 
     //define todas as combinações possiveis
     const aux = []
@@ -71,24 +68,25 @@ function trataDados(res) {
                         matriz[j][i] = matriz[i][j];
                     }
                 }
-                //console.log(matriz);
                 matriz = mathjs.inv(matriz);
-                console.log(matriz);
 
                 const produto = [];
                 for (let i = 0; i < tamCombinacao; i++)
                     produto.push(mathjs.sum(matriz[i]))
-                //console.log(produto);
 
                 const pesos = [];
                 for (let i = 0; i < tamCombinacao; i++) {
                     pesos.push(produto[i] / mathjs.sum(produto));
                 }
-                //console.log(pesos);
-                //console.log(comb);
 
                 let retornoConj = [];
-                for (let i = 0; i < carteira[0].retornos.length; i++) {
+                let tam = 1000;
+                comb.forEach(element => {
+                    if (carteira[element].retornos.length < tam)
+                        tam = carteira[element].retornos.length;
+                });
+
+                for (let i = 0; i < tam; i++) {
                     retornoConj.push(0);
                     let j = 0;
                     comb.forEach(acao => {
@@ -132,27 +130,17 @@ function trataDados(res) {
                     default:
                         break;
                 }
-
-
-                // console.log(carteira);
-                // console.log(retornoConj);
-                
-
             }
         });
 
     }
-    console.log(results);
-    console.log("---------------");
-    results.forEach(element => {
-        console.log("PARTE");
-        console.log(element);
-    });
     res.redirect('/results');
 }
 
 //Busca o histórico das ações e calcula o rendimento mensal
+let ok;
 function buscaHisRetorno(acoes, res) {
+    ok = true;
     acoes.forEach(element => {
         yahooFinance.historical({
             symbol: element,
@@ -161,35 +149,55 @@ function buscaHisRetorno(acoes, res) {
             period: 'm'  // 'd' (daily), 'w' (weekly), 'm' (monthly), 'v' (dividends only)
         }, (err, quotes) => {
             if (!err) {
+                if (quotes.length==0) {
+                    msgErro = element + " não encontrado, por favor verifique se o nome está correto.";
+                    ok = false; 
+                }
                 const hist = [];
                 //calcula o rendimento mensal de cada ação 
                 for (let i = 0; i < quotes.length - 1; i++)
                     hist.push(quotes[i].close / quotes[i + 1].close - 1);
                 carteira.push({ name: element, retornos: hist });
             }
-            
+
             //chama tratamento de dados
-            if (carteira.length == acoes.length)
+            if (carteira.length == acoes.length && ok)
                 trataDados(res);
-        });
+            else if (carteira.length == acoes.length && !ok)
+                res.redirect('/erro');
+        });  
     });
 }
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {page: 'home'});
 });
 
 app.get('/results', (req, res) => {
-    res.render('results', {results: results});
+    res.render('results', {results: results, page: 'results'});
+});
+
+app.get('/erro', (req, res) => {
+    res.render('erro', {erro: msgErro, page: 'home'});
+});
+
+app.get('/sobre', (req, res) => {
+    res.render('sobre', {page: 'sobre'});
 });
 
 // res.redirect('/');
 
 app.post("/", (req, res) => {
+    console.log("Nova pesquisa: "+ req.body.company);
     results = [];
     carteira = [];
     const acoes = trataStrings.separate(req.body.company);
-    buscaHisRetorno(acoes, res);
+    if (acoes.length > 5) {
+        msgErro = "Muitos ativos, por favor faça uma busca com no máximo 5.";
+        res.redirect('/erro');
+    }else{
+        buscaHisRetorno(acoes, res);
+    }
 });
 
 app.listen(PORT, () => {

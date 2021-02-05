@@ -15,7 +15,7 @@ Para fazer uma pesquisa, basta inserir as siglas das ações desejadas para a su
 
 As siglas podem usar letras maiúsculas ou minúsculas e devem ser separadas por espaços em branco, vírgula ou ponto e vírgula.
 
-Exemplos de boscas:
+Exemplos de buscas:
 
  - aapl goog
  - AMD, v; EbAy

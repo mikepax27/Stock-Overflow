@@ -20,3 +20,6 @@ Exemplos de buscas:
  - aapl goog
  - AMD, v; EbAy
  - msft bbd csco ITUB bac
+
+Implementação:
+https://floating-cliffs-59618.herokuapp.com/results

@@ -22,4 +22,4 @@ Exemplos de buscas:
  - msft bbd csco ITUB bac
 
 Implementação:
-https://floating-cliffs-59618.herokuapp.com/results
+https://floating-cliffs-59618.herokuapp.com
